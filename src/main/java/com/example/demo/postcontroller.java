@@ -44,6 +44,8 @@ public class postcontroller {
 		System.out.println(user.getProfilepicURI());
 		System.out.println("########################### in postcontroller getmapping createPost ###############");
 
+
+		
 		numberoffriends = friendRepo.countByMe(user);
 		System.out.println("my friends count : " + numberoffriends);
 		postPage.addObject("numberoffriends", numberoffriends);
@@ -116,6 +118,20 @@ public class postcontroller {
 		
 		post.setImageURI(imageURI);
 		post.setAudioURI(audioURI);
+
+		numberoffriends = friendRepo.countByMe(user);
+		System.out.println("my friends count : " + numberoffriends);
+		showPost.addObject("numberoffriends", numberoffriends);
+	
+		numberofposts = postRepo.countByMe(user);
+		System.out.println("my posts count : " + numberofposts);
+		showPost.addObject("numberofposts", numberofposts);
+		
+		showPost.addObject("posts", postRepo.findAllByMe(user));
+		showPost.addObject("profileImg", user.getProfilepicURI());
+		showPost.addObject("numberoffriends", numberoffriends);
+		showPost.addObject("numberofposts", numberofposts);
+		showPost.addObject("user", user);
 		
 		/*
 		showPost.addObject("posts", postRepo.findAllByMe(user));

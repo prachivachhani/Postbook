@@ -91,8 +91,8 @@ public class logincontroller
 
 				userRepo.save(u);
 			}
-			return new ModelAndView ("redirect:/myprofile");
-//			return new ModelAndView ("redirect:/createprofile");
+//			return new ModelAndView ("redirect:/myprofile");
+			return new ModelAndView ("redirect:/createprofile");
 		}
 		else {
 			return new ModelAndView ("redirect:/myprofile");
@@ -126,6 +126,19 @@ public class logincontroller
 						}
 						System.out.println(" i+1 loop"+friends.get(i).getFriendId());
 					}
+
+					numberoffriends = friendRepo.countByMe(user);
+					System.out.println("my friends count : " + numberoffriends);
+					mv.addObject("numberoffriends", numberoffriends);
+				
+					numberofposts = postRepo.countByMe(user);
+					System.out.println("my posts count : " + numberofposts);
+					mv.addObject("numberofposts", numberofposts);
+					
+					mv.addObject("posts", postRepo.findAllByMe(user));
+					mv.addObject("profileImg", user.getProfilepicURI());
+					mv.addObject("user", user);
+					mv.setViewName("myprofile");
 					
 					mv.addObject("friends", showingfriends);
 					mv.setViewName("myfriends");
@@ -174,6 +187,31 @@ public class logincontroller
 		
 		mv.addObject("user", user);
 		mv.setViewName("createprofile");
+		return mv;
+	}
+	
+	@GetMapping(value="/updateprofile")
+	public ModelAndView updateprofile(HttpServletRequest req)
+	{		
+		ModelAndView mv = new ModelAndView();
+		Long id = (Long) req.getSession().getAttribute("user_id");
+		User user = userRepo.findByMyId(id);
+		
+		System.out.println(user.getProfilepicURI());
+		System.out.println("########################### in myprofile getmapping ###############");
+
+		numberoffriends = friendRepo.countByMe(user);
+		System.out.println("my friends count : " + numberoffriends);
+		mv.addObject("numberoffriends", numberoffriends);
+	
+		numberofposts = postRepo.countByMe(user);
+		System.out.println("my posts count : " + numberofposts);
+		mv.addObject("numberofposts", numberofposts);
+		
+		mv.addObject("posts", postRepo.findAllByMe(user));
+		mv.addObject("profileImg", user.getProfilepicURI());
+		mv.addObject("user", user);
+		mv.setViewName("updateprofile");
 		return mv;
 	}
 }

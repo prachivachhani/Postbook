@@ -1,21 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+<script type="text/javascript">
+	$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+	</script>
 
 <script>
-
-// This is called with the results from from FB.getLoginStatus().
+  // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) 
   {
   	  	console.log('statusChangeCallback');
@@ -129,10 +150,35 @@
 	    });
   	}
 	
+	
   	FB.logout(function(response) {
-    	  // user is now logged out
-    	});
+  	  // user is now logged out
+  	});
 </script>
+<script>
+ function play(){
+	 var audio = document.getElementById("imageaudio");
+	 audio.play();
+     console.log(audio);
+
+ }
+ </script>
+<style>
+/* .modal-dialog, .modal-content {
+    max-height: 100%;
+    max-width: 80%;
+}
+
+.modal-body {
+    max-height: calc(100% - 100px);
+} 
+.modal-footer
+{
+    overflow-y: scroll;
+} */
+</style>
+												
+<title>Postbook profile page</title>
 </head>
 <body>
 
@@ -205,17 +251,8 @@
 							<ul class="navbar-nav mr-auto">
 								<li class="nav-item"><a href="myprofile"
 									class="nav-link text-dark">Home</a></li>
-								<li class="nav-item"><a href="createpost"
-									class="nav-link text-dark">Create Post</a></li>
-								<li class="nav-item"><a href="myfriends"
-									class="nav-link text-dark">Friends</a></li>
-								<li class="nav-item"><a href="#" class="nav-link text-dark">Notifications</a>
-								</li>
-								<li class="nav-item"><a href="updateprofile"
-									class="nav-link text-dark">Update Profile</a></li>
 								<li class="nav-item"><a href="login"
 									class="nav-link text-dark" onclick="FB.logout()">Logout</a></li>
-
 							</ul>
 						</div>
 					</div>
@@ -223,41 +260,129 @@
 				</div>
 				<!-- col9 navigation div closes -->
 				<!-- Show posts div -->
-				<div class="container">
-				<div class="row">
-						<table class="table">
-						  <thead>
-						    <tr>
-						      <th scope="col">Id</th>
-						      <th scope="col">Name</th>
-						      <th scope="col"></th>
-						      </tr>
-						  </thead>
-						  <tbody>
- 						  <c:forEach items="${friends}" var="friends">
-						    <tr>
-								<td><c:out value="${friends.myId}"></c:out></td>
-								<td><c:out value="${friends.name}"></c:out></td>
-								<td>
-								<form action="/friendsprofile">
-								<input type="hidden" value="${friends.myId}" name="friendsid"/>
-								<button class="btn btn-success">View Profile</button>
-								</form>
-								</td>
-						    </tr>
-					      </c:forEach>
- 
- 						
- 						  </tbody>
-					  </table>  
+				<div class="m-2">
+
+					<div class="container mb-4">
+						<div class="row">
+							<c:forEach items="${posts}" var="posts">
+								<div class="col-auto mb-3">
+									<div class="card bg-light" style="width: 18rem;">
+										<div class="card-body">
+											<div class="card-text">
+												<input type="hidden" value="${posts.postId}" id="card_postid"/>		
+												
+												<a href="#" class="imagemodal"> <img id="imagesource"
+													class="card-img-top img-responsive" src="${posts.imageURI}"
+													alt="Card image cap"> <audio id="audiosource"
+														src="${posts.audioURI}" type="audio/webm"></audio>
+												</a>
+
+									<script>
+	 									$(function() {
+	 										$('.imagemodal').on('click', function() {
+	 											var post_id1 = document.getElementById("card_postid").value;
+	 											$('input#model_postid').attr('value', post_id1);
+	 											$('.imagepreview').attr('src', $(this).find('img').attr('src'));
+	 											$('.audiopreview').attr('src', $(this).find('audio').attr('src'));
+	 											$('#postmodal').modal('show');   
+	 										});		
+	 									});	 
+									</script>
+
+											</div>
+											<div class="card-footer">
+												<c:out value="${posts.imagecaption}"></c:out>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+							<!-- Model Div -->
+							<div class="modal fade" id="postmodal" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog modal-md">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Image
+												preview</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+													<img src="" class="imagepreview mx-auto modal-body" style="max-height:100%; max-width:100%">
+													<audio src="" class="audiopreview" type="audio/webm"
+														autoplay> </audio>
+																							
+										</div>
+									
+										<div class="modal-footer">
+												<div>
+													<div id="commentform">
+														<form class="mr-auto">
+														   <label class="mt-2">Leave a comment : </label> 
+														   <input name="post_id" value="" type="hidden" id="model_postid">
+														   <input name="inputcomment" type="text" id="inputcomment" size="30"> 
+														   <button type="button" onclick="commentclick()" class="bg-success mt-2 p-2">Comment</button>
+														</form>
+													</div>
+													<div class="list-comments mt-2" id="list-comments"></div>
+												</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Model div closes -->
+					</div>
+					<!-- closes row div -->
 				</div>
-				</div>
-			</div>	
+				<!-- closes container div -->
+			</div>
+			<!-- show posts div closes -->
 		</div>
 	</div>
+	</div>
+	
+	
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function commentclick()
+{
+	var $text = document.getElementById('inputcomment').value;
+	var	response;
+	var $postid = document.getElementById('model_postid').value;
+	
+	response = $text;	
+	alert("sd:"+$text);
+ 	$.ajax({
+			url:"/saveComment",
+			type:"POST",
+			data:{"inputcomment": $text, "post_id": $postid},
+			
+			success:function(data){
+				
+//	         	$("#list-comments").append('<div>'+data['comment']+" "+	data['post']+"  "+data['user']+" "+data['date']+'</div>');
+	              
+
+	         	$("#list-comments").append('<div class="bg-light container mb-2 p-2">'+ 
+	         									'<div class="row pl-4">	<b>' + data['user'] + '</b> </div>'+
+	         									'<div class="row pl-4">' + data['comment']+ 
+		         									'</div><div class="row text-muted small pl-4">'+ data['date']+
+		         									'</div>'+
+		         								'</div>');
+	         	
+		            
+				 
+				alert("data:"+data['comment']); 
+	         	document.getElementById('inputcomment').value = '';
+				alert('success');
+			}
+			});
+  	return false;
+}
+</script>
 </body>
 </html>

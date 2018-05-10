@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!doctype html>
 <html>
@@ -97,24 +98,21 @@
 				        <span class="navbar-toggler-icon"></span>
 				      </button>
 				      <div class="collapse navbar-collapse" id="navbarCollapse">
-				        <ul class="navbar-nav mr-auto">
-				          <li class="nav-item">
-				            <a href="myprofile" class="nav-link text-dark">Home</a>
-				          </li>
-				          <li class="nav-item">
-				            <a href="createpost" class="nav-link text-dark">Create Post</a>
-				          </li>
-				          <li class="nav-item">
-				            <a href="myfriends" class="nav-link text-dark">Friends</a>
-				          </li>
-				          <li class="nav-item">
-				            <a href="#" class="nav-link text-dark">Notifications</a>
-				          </li>
-				          <li class="nav-item">
-				            <a href="login" class="nav-link text-dark" onclick="FB.logout()">Logout</a>
-				          </li>
+							<ul class="navbar-nav mr-auto">
+								<li class="nav-item"><a href="myprofile"
+									class="nav-link text-dark">Home</a></li>
+								<li class="nav-item"><a href="createpost"
+									class="nav-link text-dark">Create Post</a></li>
+								<li class="nav-item"><a href="myfriends"
+									class="nav-link text-dark">Friends</a></li>
+								<li class="nav-item"><a href="#" class="nav-link text-dark">Notifications</a>
+								</li>
+								<li class="nav-item"><a href="updateprofile"
+									class="nav-link text-dark">Update Profile</a></li>
+								<li class="nav-item"><a href="login"
+									class="nav-link text-dark" onclick="FB.logout()">Logout</a></li>
 
-				        </ul>
+							</ul>
 				      </div>
 				    </div>
 				  </nav>
@@ -124,18 +122,18 @@
 			
 				<div class="container py-5">
 				    <div class="row">
-				        <div class="col-md-6 mx-auto">
-			                <div class="card border-secondary">
+				        <div class="col mx-auto">
+			                <div class="card border-secondary w-75 mx-auto">
 			                    <div class="card-header">
-			                        <h3 class="mb-0 my-2">Create Profile</h3>
+			                        <h3 class="mb-0 my-2">Create Post</h3>
 			                    </div>
 			                    <div class="card-body">
 									<form id="audioForm" action="/base64audio" method="post" enctype="multipart/form-data">
-						                <div class="form-group error row">
+						                <div class="form-group row">
 						                    <label class="form-label col-sm-4">Select Image:</label> 
 						                    <div class="form-field col-sm-8"><input type="file" name="imagefile"/></div>
 						                </div>
-						                <div class="form-group error row">
+						                <div class="form-group row">
 						                    <label class="form-label col-sm-4">Click to upload audio:</label> 
 						                    <div class="form-field col-sm-8">
 						                    	<audio id="myAudio" class="video-js vjs-default-skin"></audio>
@@ -205,7 +203,7 @@
 						                    	<input id="recording" name="recording" type="hidden">
 						                    </div>
 						                </div>
-				                        <div class="form-group error row">
+				                        <div class="form-group row">
 						                    <label class="form-label col-sm-4">Or write image caption:</label> 
 						                    <div class="form-field col-sm-8"><input type="text" name="imagecaption"/></div>
 						                </div>

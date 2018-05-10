@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface FriendsRepository extends CrudRepository<Friends, helperClass>
 {
 	public List<Friends> findByMe(User user);
-
+	public List<Friends> findAll();
 	public Long countByMe(User user);
 }
