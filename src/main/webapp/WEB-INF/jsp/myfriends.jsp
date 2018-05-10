@@ -136,62 +136,115 @@
 </head>
 <body>
 
-
-	<nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
-	<div class="container">
-		<a class="navbar-brand" href="#"> 
-		    <img src="postbook3.png" width="50" height="50"/>
-			POSTBOOK
-		</a>
-		<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarpart">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-	
-		<div class="collapse navbar-collapse" id="navbarpart">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="myprofile">Home</a>
-				</li>				
-				<li class="nav-item">
-					<a class="nav-link" href="#">Create Post</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="myfriends">Friends</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Notifications</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="login" onclick="FB.logout();">Logout</a>
-				</li>
-			</ul>
-		</div>		
-    </div>
-	</nav>
-<div class="container">
-<div class="row">
-		<table class="table">
-		  <thead>
-		    <tr>
-		      <th scope="col">Id</th>
-		      <th scope="col">Name</th>
-<!-- 	      <th scope="col">Email</th>
- -->		    </tr>
-		  </thead>
-		  <tbody>
-		  <c:forEach items="${friends}" var="friends">
-		    <tr>
-				<td><c:out value="${friends.myId}"></c:out></td>
-				<td><c:out value="${friends.name}"></c:out></td>
-<%-- 				<td><c:out value="${user.email}"></c:out></td>
- --%>		    </tr>
-		    </c:forEach>
-		   </tbody>
-		  </table>  
+	<div class="container-fluid">
+		<div class="row">
 
 
-</div>
-</div>
+			<!-- col3 starts -->
+			<div class="col-md-3 bg-light text-center no-gutters"
+				style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+				<div class="row">
+					<div class="col bg-dark text-white display-4 p-3">POSTBOOK</div>
+				</div>
+
+				<div class="row">
+					<div class="col py-4">
+						<img src="${profileImg}" alt="Profile Img"
+							class="rounded-circle img-css" height="200px" width="200px">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col pb-4 ">
+						<b><c:out value="${user.name}"></c:out></b><br>
+						<c:out value="${user.description}"></c:out>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col">
+						<div class="card text-center bg-dark w-50 m-auto text-white">
+							<div class="card-body">
+								<h4>Posts</h4>
+								<h2>
+									<i class="fa fa-thumbs-o-up mr-2"
+										style="color: white; size: 20px;"></i>
+									<c:out value="${numberofposts}"></c:out>
+								</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mt-3 mb-5">
+					<div class="col">
+						<div class="card text-center bg-dark w-50 m-auto text-white">
+							<div class="card-body">
+								<h4>Friends</h4>
+								<h2>
+									<i class="fa fa-users mr-2" style="color: white; size: 20px;"></i>
+									<c:out value="${numberoffriends}"></c:out>
+								</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- col 3 ends -->
+
+
+			<div class="col-md-9">
+				<!-- col9 navigation bar -->
+				<div class="row">
+					<nav class="navbar-nav navbar-expand-md navbar-light bg-light"
+						style="width:100%; font-size: 20px;">
+					<div class="container pt-5 pl-4">
+						<button class="navbar-toggler" data-toggle="collapse"
+							data-target="#navbarCollapse">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarCollapse">
+							<ul class="navbar-nav mr-auto">
+								<li class="nav-item"><a href="myprofile"
+									class="nav-link text-dark">Home</a></li>
+								<li class="nav-item"><a href="createpost"
+									class="nav-link text-dark">Create Post</a></li>
+								<li class="nav-item"><a href="myfriends"
+									class="nav-link text-dark">Friends</a></li>
+								<li class="nav-item"><a href="#" class="nav-link text-dark">Notifications</a>
+								</li>
+								<li class="nav-item"><a href="createprofile"
+									class="nav-link text-dark">Update Profile</a></li>
+								<li class="nav-item"><a href="login"
+									class="nav-link text-dark" onclick="FB.logout()">Logout</a></li>
+
+							</ul>
+						</div>
+					</div>
+					</nav>
+				</div>
+				<!-- col9 navigation div closes -->
+				<!-- Show posts div -->
+				<div class="container">
+				<div class="row">
+						<table class="table">
+						  <thead>
+						    <tr>
+						      <th scope="col">Id</th>
+						      <th scope="col">Name</th>
+						  </thead>
+						  <tbody>
+						  <c:forEach items="${friends}" var="friends">
+						    <tr>
+								<td><c:out value="${friends.myId}"></c:out></td>
+								<td><c:out value="${friends.name}"></c:out></td>
+						    </tr>
+					      </c:forEach>
+						  </tbody>
+					  </table>  
+				</div>
+				</div>
+			</div>	
+		</div>
+	</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>

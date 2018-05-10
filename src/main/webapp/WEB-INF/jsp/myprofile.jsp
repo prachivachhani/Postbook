@@ -163,7 +163,20 @@
 
  }
  </script>
+<style>
+/* .modal-dialog, .modal-content {
+    max-height: 100%;
+    max-width: 80%;
+}
 
+.modal-body {
+    max-height: calc(100% - 100px);
+} 
+.modal-footer
+{
+    overflow-y: scroll;
+} */
+</style>
 												
 <title>Postbook profile page</title>
 </head>
@@ -266,8 +279,7 @@
 										<div class="card-body">
 											<div class="card-text">
 												<input type="hidden" value="${posts.postId}" id="card_postid"/>		
-												<c:out value="${posts.postId}"></c:out>
-
+												
 												<a href="#" class="imagemodal"> <img id="imagesource"
 													class="card-img-top img-responsive" src="${posts.imageURI}"
 													alt="Card image cap"> <audio id="audiosource"
@@ -298,7 +310,7 @@
 							<div class="modal fade" id="postmodal" tabindex="-1"
 								role="dialog" aria-labelledby="exampleModalLabel"
 								aria-hidden="true">
-								<div class="modal-dialog modal-lg">
+								<div class="modal-dialog modal-md">
 									<div class="modal-content">
 										<div class="modal-header">
 											<h5 class="modal-title" id="exampleModalLabel">Image
@@ -309,30 +321,25 @@
 											</button>
 										</div>
 										<div class="modal-body">
-											<div class="container">
-												<div class="row content-justify-center">
-													<img src="" class="imagepreview img-fluid mx-auto"
-														style="max-width: 100%;">
+													<img src="" class="imagepreview mx-auto modal-body" style="max-height:100%; max-width:100%">
 													<audio src="" class="audiopreview" type="audio/webm"
 														autoplay> </audio>
-												</div>
+																							
+										</div>
+									
+										<div class="modal-footer">
 												<div>
 													<div id="commentform">
-														<form>
-														   <label>Leave a comment</label> 
+														<form class="mr-auto">
+														   <label class="mt-2">Leave a comment : </label> 
 														   <input name="post_id" value="" type="hidden" id="model_postid">
-														   <input name="inputcomment" type="text" id="inputcomment"> 
-														   <button type="button" onclick="commentclick()">Comment</button>
+														   <input name="inputcomment" type="text" id="inputcomment" size="30"> 
+														   <button type="button" onclick="commentclick()" class="bg-success mt-2 p-2">Comment</button>
 														</form>
 													</div>
-													<div class="list-comments" id="list-comments"></div>
+													<div class="list-comments mt-2" id="list-comments"></div>
 												</div>
-											</div>
 										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
-											data-dismiss="modal">Close</button>
 									</div>
 								</div>
 							</div>
@@ -366,10 +373,16 @@ function commentclick()
 			
 			success:function(data){
 				
+//	         	$("#list-comments").append('<div>'+data['comment']+" "+	data['post']+"  "+data['user']+" "+data['date']+'</div>');
 	              
 
-	         	$("#list-comments").append('<div>'+data['comment']+" "+data['post']+"  "+data['user']+" "+data['date']+'</div>');
-			        
+	         	$("#list-comments").append('<div class="bg-light container mb-2 p-2">'+ 
+	         									'<div class="row pl-4">	<b>' + data['user'] + '</b> </div>'+
+	         									'<div class="row pl-4">' + data['comment']+ 
+		         									'</div><div class="row text-muted small pl-4">'+ data['date']+
+		         									'</div>'+
+		         								'</div>');
+	         	
 		            
 				 
 				alert("data:"+data['comment']); 
