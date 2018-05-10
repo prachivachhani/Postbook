@@ -365,7 +365,14 @@ function commentclick()
 			data:{"inputcomment": $text, "post_id": $postid},
 			
 			success:function(data){
-	         	$("#list-comments").append('<div>'+response+'</div>');
+				
+	              
+
+	         	$("#list-comments").append('<div>'+data['comment']+" "+data['post']+"  "+data['user']+" "+data['date']+'</div>');
+			        
+		            
+				 
+				alert("data:"+data['comment']); 
 	         	document.getElementById('inputcomment').value = '';
 				alert('success');
 			}

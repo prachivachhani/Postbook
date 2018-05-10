@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface PostRepository extends CrudRepository<Post, Long>
 {
 	public Long countByMe(User user);
-
+	public Post findByPostId(Long id);
 	public List<Post> findAllByMe(User user);
 }
