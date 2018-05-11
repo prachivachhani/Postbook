@@ -39,7 +39,8 @@ public class User {
 	
 	private String description;
 
-	
+	public ArrayList<String> notificationString = new ArrayList<>();
+ 	
 //	@Column(columnDefinition="mediumblob")
  //   private byte[] profileImage;
 	
@@ -48,6 +49,12 @@ public class User {
 //	private List<Friends> friends;
 //	private List<Post> posts;
 
+	public ArrayList<String> getNotificationString() {
+		return notificationString;
+	}
+	public void addNotificationString(String notificationString) {
+		this.notificationString.add(notificationString);
+	}
 	public String getProfilepicURI() {
 		return profilepicURI;
 	}

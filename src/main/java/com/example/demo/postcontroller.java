@@ -9,6 +9,7 @@ import java.util.Base64.Decoder;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class postcontroller {
 
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
+	 
 	@Autowired
 	ConnectToS3 s3object;
 	
@@ -43,8 +47,6 @@ public class postcontroller {
 		
 		System.out.println(user.getProfilepicURI());
 		System.out.println("########################### in postcontroller getmapping createPost ###############");
-
-
 		
 		numberoffriends = friendRepo.countByMe(user);
 		System.out.println("my friends count : " + numberoffriends);
@@ -80,6 +82,10 @@ public class postcontroller {
 		post.setMe(user);
 		user.addPost(post);
 		postRepo.save(post);
+
+		PostEvent postEvent = new PostEvent(this, id.toString());
+		applicationEventPublisher.publishEvent(postEvent);
+		
 		
 		Long postId = post.getPostId();
 		System.out.println("IN POST CONTROLLER : POST_ID " + postId);

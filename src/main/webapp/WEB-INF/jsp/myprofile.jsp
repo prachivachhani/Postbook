@@ -5,29 +5,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
 
 <script>
   // This is called with the results from from FB.getLoginStatus().
@@ -171,7 +162,7 @@
     overflow-y: scroll;
 } */
 </style>
-												
+
 <title>Postbook profile page</title>
 </head>
 <body>
@@ -249,8 +240,8 @@
 									class="nav-link text-dark">Create Post</a></li>
 								<li class="nav-item"><a href="myfriends"
 									class="nav-link text-dark">Friends</a></li>
-								<li class="nav-item"><a href="#" class="nav-link text-dark">Notifications</a>
-								</li>
+								<li class="nav-item"><a href="notification"
+									class="nav-link text-dark">Notifications</a></li>
 								<li class="nav-item"><a href="updateprofile"
 									class="nav-link text-dark">Update Profile</a></li>
 								<li class="nav-item"><a href="login"
@@ -272,16 +263,16 @@
 									<div class="card bg-light" style="width: 18rem;">
 										<div class="card-body">
 											<div class="card-text">
-											
-												<input type="text" value="${posts.postId}" id="card_postid"/>		
-												
+
+												<input type="text" value="${posts.postId}" id="card_postid" />
+
 												<a href="#" class="imagemodal"> <img id="imagesource"
 													class="card-img-top img-responsive" src="${posts.imageURI}"
 													alt="Card image cap"> <audio id="audiosource"
 														src="${posts.audioURI}" type="audio/webm"></audio>
 												</a>
 
-									<script>
+												<script>
 	 									$(function() {
 	 										$('.imagemodal').on('click', function() {
 	 											var post_id1 = document.getElementById("card_postid").value;
@@ -316,24 +307,27 @@
 											</button>
 										</div>
 										<div class="modal-body">
-													<img src="" class="imagepreview mx-auto modal-body" style="max-height:100%; max-width:100%">
-													<audio src="" class="audiopreview" type="audio/webm"
-														autoplay> </audio>
-																							
+											<img src="" class="imagepreview mx-auto modal-body"
+												style="max-height: 100%; max-width: 100%">
+											<audio src="" class="audiopreview" type="audio/webm" autoplay>
+											</audio>
+
 										</div>
-									
+
 										<div class="modal-footer">
-												<div>
-													<div id="commentform">
-														<form class="mr-auto">
-														   <label class="mt-2">Leave a comment : </label> 
-														   <input name="post_id" value="" type="hidden" id="model_postid">
-														   <input name="inputcomment" type="text" id="inputcomment" size="30"> 
-														   <button type="button" onclick="commentclick()" class="bg-success mt-2 p-2">Comment</button>
-														</form>
-													</div>
-													<div class="list-comments mt-2" id="list-comments"></div>
+											<div>
+												<div id="commentform">
+													<form class="mr-auto">
+														<label class="mt-2">Leave a comment : </label> <input
+															name="post_id" value="" type="hidden" id="model_postid">
+														<input name="inputcomment" type="text" id="inputcomment"
+															size="30">
+														<button type="button" onclick="commentclick()"
+															class="bg-success mt-2 p-2">Comment</button>
+													</form>
 												</div>
+												<div class="list-comments mt-2" id="list-comments"></div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -349,10 +343,10 @@
 		</div>
 	</div>
 	</div>
-	
-	
 
-<script type="text/javascript">
+
+
+	<script type="text/javascript">
 function commentclick()
 {
 	var $text = document.getElementById('inputcomment').value;

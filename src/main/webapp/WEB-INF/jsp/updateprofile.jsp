@@ -213,7 +213,7 @@
 									class="nav-link text-dark">Create Post</a></li>
 								<li class="nav-item"><a href="myfriends"
 									class="nav-link text-dark">Friends</a></li>
-								<li class="nav-item"><a href="#" class="nav-link text-dark">Notifications</a>
+								<li class="nav-item"><a href="notification" class="nav-link text-dark">Notifications</a>
 								</li>
 								<li class="nav-item"><a href="updateprofile"
 									class="nav-link text-dark">Update Profile</a></li>

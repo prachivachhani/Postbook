@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class commentcontroller {
 
+	@Autowired
+	private ApplicationEventPublisher applicationEventPublisher;
+	
 	@Autowired
 	private CommentsRepository commentRepo;
 
@@ -36,7 +40,7 @@ public class commentcontroller {
 		return "success";
 	}
 	
-	 @PostMapping(value = "/saveComment")
+	@PostMapping(value = "/saveComment")
      public void saveComment(HttpServletResponse response, HttpServletRequest request, @RequestParam("inputcomment") String usercomment, @RequestParam("post_id") Long post_id) 
 	 {
 		 System.out.println("######### in comment controller ##########");
@@ -59,6 +63,11 @@ public class commentcontroller {
 			comment.setUsername(name);
 			commentRepo.save(comment);
 
+
+			CommentEvent commentEvent = new CommentEvent(this, userid.toString());
+			applicationEventPublisher.publishEvent(commentEvent);
+
+			
 			List<Comments> c = commentRepo.findAllByPost(post);
 			System.out.println("Comment size"+c.size());
 			
