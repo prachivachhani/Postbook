@@ -223,11 +223,11 @@
 				</div>
 				<!-- col9 navigation div closes -->
 				<!-- Show posts div -->
-				<div class="container">
+				<div class="container mt-3">
 				<div class="row">
 						<table class="table">
 						  <thead>
-						    <tr>
+						    <tr style="text-align:center;">
 						      <th scope="col">Id</th>
 						      <th scope="col">Name</th>
 						      <th scope="col"></th>
@@ -235,7 +235,7 @@
 						  </thead>
 						  <tbody>
  						  <c:forEach items="${friends}" var="friends">
-						    <tr>
+						    <tr style="text-align:center;">
 								<td><c:out value="${friends.myId}"></c:out></td>
 								<td><c:out value="${friends.name}"></c:out></td>
 								<td>

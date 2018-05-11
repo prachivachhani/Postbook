@@ -264,7 +264,7 @@
 										<div class="card-body">
 											<div class="card-text">
 
-												<input type="text" value="${posts.postId}" id="card_postid" />
+												<input type="hidden" value="${posts.postId}" id="card_postid" />
 
 												<a href="#" class="imagemodal"> <img id="imagesource"
 													class="card-img-top img-responsive" src="${posts.imageURI}"
@@ -352,9 +352,9 @@ function commentclick()
 	var $text = document.getElementById('inputcomment').value;
 	var	response;
 	var $postid = document.getElementById('model_postid').value;
-	alert('postid:'+$postid);
+//	alert('postid:'+$postid);
 	response = $text;	
-	alert("sd:"+$text);
+//	alert("sd:"+$text);
  	$.ajax({
 			url:"/saveComment",
 			type:"POST",
@@ -374,9 +374,9 @@ function commentclick()
 	         	
 		            
 				 
-				alert("data:"+data['comment']); 
+//				alert("data:"+data['comment']); 
 	         	document.getElementById('inputcomment').value = '';
-				alert('success');
+//				alert('success');
 			}
 			});
   	return false;

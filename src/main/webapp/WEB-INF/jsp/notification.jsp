@@ -104,13 +104,12 @@
 				<!-- col9 navigation div closes -->
 				<!-- update profile form -->
 				
-				<div class="container py-5">
-				    <div class="row">
-				        <div class="col mx-auto">
+				<div class="container p-3 m-2">
+				    <div class="row pl-5">
+				        <div class="col mx-auto bg-light p-2">
 			           	  <c:forEach items="${user.notificationString}" var="heading">
 								<c:out value="${heading}"></c:out>
 						  </c:forEach>
-
 				      </div>
 				   </div>
 				</div>

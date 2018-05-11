@@ -75,4 +75,38 @@ public class profilecontroller
 		return profilePage;
 
 	}
+
+	@PostMapping(value="/update")
+	public ModelAndView uploadImgToDbupdate(@RequestParam("file") MultipartFile image, @RequestParam("description") String description, HttpServletRequest req) throws IOException
+	{
+		Long id = (Long) req.getSession().getAttribute("user_id");
+			
+		User user = userRepo.findByMyId(id);
+		
+		System.out.println("IN PROFILE CONTROLLER : USER_ID" + id);
+		System.out.println("IN PROFILE CONTROLLER : USER_NAME" + user.getName());
+		
+		user.setDescription(description);
+
+		ModelAndView profilePage = new ModelAndView();
+		String fileURI = s3object.upload(user.getProfilepicURI(), image.getInputStream());
+		
+		user.setProfilepicURI(fileURI);
+		System.out.println("########################### in myprofile getmapping ###############");
+
+		numberoffriends = friendRepo.countByMe(user);
+		System.out.println("my friends count : " + numberoffriends);
+		profilePage.addObject("numberoffriends", numberoffriends);
+
+		numberofposts = postRepo.countByMe(user);
+		System.out.println("my posts count : " + numberofposts);
+		profilePage.addObject("numberofposts", numberofposts);
+		
+		profilePage.addObject("profileImg", user.getProfilepicURI());
+		profilePage.addObject("user", user);
+		profilePage.setViewName("redirect:/myprofile");
+		return profilePage;
+
+	}
+
 }

@@ -122,7 +122,6 @@ public class logincontroller
 							userfriend = userRepo.findByMyId(friends.get(i).getFriendId());
 							System.out.println(userfriend.getName());
 							showingfriends.add(userfriend);
-							//showingfriends.add(userRepo.findByMyId(friends.get(i).getFriendId()));
 						}
 						System.out.println(" i+1 loop"+friends.get(i).getFriendId());
 					}

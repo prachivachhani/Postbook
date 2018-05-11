@@ -71,7 +71,7 @@ public class commentcontroller {
 			List<Comments> c = commentRepo.findAllByPost(post);
 			System.out.println("Comment size"+c.size());
 			
-			JSONObject json=new JSONObject();
+		//	JSONObject json=new JSONObject();
 			JSONObject commentObj=new JSONObject();
 			try {
 				commentObj.put("comment", comment.getComment());

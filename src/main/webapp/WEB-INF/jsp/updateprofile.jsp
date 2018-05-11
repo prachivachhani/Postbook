@@ -236,7 +236,7 @@
 				                        <h3 class="my-2">Update Profile</h3>
 				                    </div>
 				                    <div class="card-body">
-				                        <form class="form" role="form" autocomplete="off" action="/upload" method="post" enctype="multipart/form-data">
+				                        <form class="form" role="form" autocomplete="off" action="/update" method="post" enctype="multipart/form-data">
 							                <div class="form-group row">
 							                    <label class="form-label col-sm-4">Select Image:</label> 
 							                    <div class="form-field col-sm-8"><input type="file" name="file"/></div>
