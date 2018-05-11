@@ -67,7 +67,7 @@ public class postcontroller {
 	
 	
 	@PostMapping(value="/base64audio")
-	public ModelAndView saveAudio(HttpServletRequest req, @RequestParam("imagefile") MultipartFile image, @RequestParam("recording") String recording,
+	public ModelAndView saveAudio(HttpServletRequest req, @RequestParam("imagefile") String imagefile, @RequestParam("recording") String recording,
 			@RequestParam("imagecaption") String imagecaption) throws Exception
 	{
 		Long id = (Long) req.getSession().getAttribute("user_id");
@@ -102,15 +102,19 @@ public class postcontroller {
 		
 		System.out.println("recording...." + recording);
 		
-		byte [] decoderByte = decoder.decode(recording.split(",")[1]);
+		byte [] decoderByte1 = decoder.decode(recording.split(",")[1]);
+		byte [] decoderByte2 = decoder.decode(imagefile.split(",")[1]);
 		
-		FileOutputStream fos;
+		FileOutputStream fos1;
+		FileOutputStream fos2;
 		
 		try {
-			fos = new FileOutputStream("MyAudio.webm");
-			fos.write(decoderByte);
-			fos.close();
-			
+			fos1 = new FileOutputStream("PostAudio.webm");
+			fos2 = new FileOutputStream("PostImage.jpg");
+			fos1.write(decoderByte1);
+			fos2.write(decoderByte2);
+			fos1.close();
+			fos2.close();
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -119,10 +123,10 @@ public class postcontroller {
 		System.out.println(".....post controller\nIMAGE FILE NAME : "+ post.getImageURI());
 		System.out.println(".....post controller\nIMAGE FILE CAPTION : "+ post.getImagecaption());
 		
-		String audioURI = s3object.upload(post.getAudioURI() + ".webm", new FileInputStream("MyAudio.webm"));
-		String imageURI = s3object.upload(post.getImageURI(), image.getInputStream());
+		String audioURI = s3object.upload(post.getAudioURI() + ".webm", new FileInputStream("PostAudio.webm"));
+		String imageURI = s3object.upload(post.getImageURI() + ".jpg", new FileInputStream("PostImage.jpg"));
 		
-		post.setImageURI(imageURI);
+		post.setImageURI(imageURI);	
 		post.setAudioURI(audioURI);
 
 		numberoffriends = friendRepo.countByMe(user);

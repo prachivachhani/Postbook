@@ -24,21 +24,29 @@
 	<!-- AUDIO FILE LINKS -->
 	<link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/videojs-record/2.1.0/css/videojs.record.css" rel="stylesheet">
+
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.2/video.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.4.6/RecordRTC.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.2/video.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.4.6/RecordRTC.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/adapterjs/0.15.0/adapter.min.js"></script>
 	<script src="https://collab-project.github.io/videojs-record/dist/wavesurfer.min.js"></script>
 	<script src="https://collab-project.github.io/videojs-record/dist/wavesurfer.microphone.min.js"></script>
 	<script src="https://collab-project.github.io/videojs-record/dist/videojs.wavesurfer.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-record/2.1.2/videojs.record.min.js"></script>
  
- 
+ 	<!-- IMAGE FILE LINKS -->
+ 	<script src="https://vjs.zencdn.net/6.8.0/video.min.js"></script>
+ 	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+ 	<script src="https://collab-project.github.io/videojs-record/dist/videojs.record.min.js"></script>
  
   <style>
   /* change player background color */
   #myAudio {
       background-color: #9FD6BA;
+  }
+  /* change player background color */
+  #myImage {
+      background-color: #efc3e6;
   }
   </style>
 
@@ -130,8 +138,46 @@
 			                    <div class="card-body">
 									<form id="audioForm" action="/base64audio" method="post" enctype="multipart/form-data">
 						                <div class="form-group row">
-						                    <label class="form-label col-sm-4">Select Image:</label> 
-						                    <div class="form-field col-sm-8"><input type="file" name="imagefile"/></div>
+						                    <label class="form-label col-sm-4">Click to upload image:</label> 
+						                    <div class="form-field col-sm-8">
+						                    <video id="myImage" class="video-js vjs-default-skin"></video>
+
+												<script>
+												var player = videojs("myImage", {
+												    controls: true,
+												    width: 250,
+												    height: 125,
+												    controlBar: {
+												        volumePanel: false,
+												        fullscreenToggle: false
+												    },
+												    plugins: {
+												        record: {
+												            image: true,
+												            debug: true
+												        }
+												    }
+												}, function(){
+												    // print version information at startup
+												    videojs.log('Using video.js', videojs.VERSION,
+												        'with videojs-record', videojs.getPluginVersion('record'));
+												});
+												
+												// error handling
+												player.on('deviceError', function() {
+												    console.warn('device error:', player.deviceErrorCode);
+												});
+												
+												// snapshot is available
+												player.on('finishRecord', function() {
+												    // the blob object contains the image data that
+												    // can be downloaded by the user, stored on server etc.
+												    console.log('snapshot ready: ', player.recordedData);
+
+												});
+												</script>
+						                    <input type="hidden" name="imagefile" id="imagefile" value=player.recordedData/>
+						                    </div>
 						                </div>
 						                <div class="form-group row">
 						                    <label class="form-label col-sm-4">Click to upload audio:</label> 
@@ -195,7 +241,7 @@
 												});
 												
 												$(document).ready(function(){
-													$("#saveAudio").on("click",function(){
+													$("#savePost").on("click",function(){
 														$("#audioForm").submit();
 													});
 												});
@@ -208,7 +254,7 @@
 						                    <div class="form-field col-sm-8"><input type="text" name="imagecaption"/></div>
 						                </div>
 						                <div class="form-group">
-				                            <button type="submit" class="btn btn-success btn-md float-left" id="saveAudio">Save</button>
+				                            <button type="submit" class="btn btn-success btn-md float-left" id="savePost">Save</button>
 				                        </div>
 				                    </form>
 				                </div>

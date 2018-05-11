@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,6 +20,20 @@
 </script>
 </head>
 <body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 text-success mt-3">
+				Welcome <c:out value="${user.name}"></c:out> !
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 text-dark mt-3">
+				Start by creating your profile page... 
+			
+			</div>
+		</div>
+	</div>
+
 	<!--  CREATE PROFILE  -->
 	<div class="container py-5">
 	    <div class="row">
