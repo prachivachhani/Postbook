@@ -7,24 +7,16 @@
 <head>
   <meta charset="utf-8">
   <title>Audio-only Example</title>
-	
-	
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-	</script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
-	
-	
-	<!-- AUDIO FILE LINKS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link href="https://vjs.zencdn.net/6.8.0/video-js.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/videojs-record/2.2.0/css/videojs.record.min.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.2/video.min.js"></script>
+ 	<script src = "https://webrtc.github.io/adapter/adapter-latest.js"></script>
 	<link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/videojs-record/2.1.0/css/videojs.record.css" rel="stylesheet">
-
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.2/video.min.js"></script>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.4.6/RecordRTC.js"></script>
@@ -33,12 +25,7 @@
 	<script src="https://collab-project.github.io/videojs-record/dist/wavesurfer.microphone.min.js"></script>
 	<script src="https://collab-project.github.io/videojs-record/dist/videojs.wavesurfer.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-record/2.1.2/videojs.record.min.js"></script>
- 
- 	<!-- IMAGE FILE LINKS -->
-<!--  	<script src="https://vjs.zencdn.net/6.8.0/video.min.js"></script>
- 	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
- 	<script src="https://collab-project.github.io/videojs-record/dist/videojs.record.min.js"></script>
- --> 
+
   <style>
   /* change player background color */
   #myAudio {
@@ -140,10 +127,10 @@
 						                <div class="form-group row">
 						                    <label class="form-label col-sm-4">Click to upload image:</label> 
 						                    <div class="form-field col-sm-8">
-<!-- 						                    <video id="myImage" class="video-js vjs-default-skin"></video>
+ 						                    <video id="myImage" class="video-js vjs-default-skin"></video>
 
 												<script>
-												var player = videojs("myImage", {
+												var player1 = videojs("myImage", {
 												    controls: true,
 												    width: 250,
 												    height: 125,
@@ -164,20 +151,20 @@
 												});
 												
 												// error handling
-												player.on('deviceError', function() {
-												    console.warn('device error:', player.deviceErrorCode);
+												player1.on('deviceError', function() {
+												    console.warn('device error:', player1.deviceErrorCode);
 												});
 												
 												// snapshot is available
-												player.on('finishRecord', function() {
+												player1.on('finishRecord', function() {
 												    // the blob object contains the image data that
 												    // can be downloaded by the user, stored on server etc.
-												    console.log('snapshot ready: ', player.recordedData);
-
+												    console.log('snapshot ready: ', player1.recordedData);
+												    $("#imagefile").val(player1.recordedData);
 												});
 												</script>
-						                    <input type="hidden" name="imagefile" id="imagefile" value=player.recordedData/>
- -->										<input type="file" name="imagefile" id="imagefile" />
+							                    <input type="hidden" name="imagefile" id="imagefile" />
+		<!-- 								<input type="file" name="imagefile" id="imagefile" /> -->
  										
  						                    </div>
 						                </div>
@@ -238,12 +225,14 @@
 												    {
 												    	base64data = reader.result;
 												    	console.log(base64data);
+												    	
 												    	$("#recording").val(base64data);
 												    }
 												});
 												
 												$(document).ready(function(){
 													$("#savePost").on("click",function(){
+														
 														$("#audioForm").submit();
 													});
 												});
