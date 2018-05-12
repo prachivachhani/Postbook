@@ -123,121 +123,126 @@
 				</div>
 				<!-- col9 navigation div closes -->
 				<!-- Show posts div -->
-				<div class="m-2">
+				<div class="container mb-4 mt-4">
+					<div class="row">
+						<c:forEach items="${posts}" var="posts">
+							<div class="col-auto mb-3">
+								<div class="card bg-light" style="width: 18rem;">
+									<div class="card-body">
+										<div class="card-text">
+											<input type="hidden" value="${posts.postId}" id="card_postid" />
 
-					<div class="container mb-4">
-						<div class="row">
-							<c:forEach items="${posts}" var="posts">
-								<div class="col-auto mb-3">
-									<div class="card bg-light" style="width: 18rem;">
-										<div class="card-body">
-											<div class="card-text">
-											
-												<input type="text" value="${posts.postId}" id="card_postid"/>		
-												
-												<a href="#" class="imagemodal"> <img id="imagesource"
-													class="card-img-top img-responsive" src="${posts.imageURI}"
-													alt="Card image cap"> <audio id="audiosource"
-														src="${posts.audioURI}" type="audio/webm"></audio>
-												</a>
+											<a href="#modal${posts.postId} " onclick="showmodal(${posts.postId})" class="imagemodal"
+												id="image${posts.postId}" data-toggle="modal"> 
+												<img id="imagesource${posts.postId} " class="card-img-top img-responsive" src="${posts.imageURI}"
+												alt="Card image cap"> 
+												<audio id="audiosource${posts.postId} " src="${posts.audioURI}"
+													type="audio/webm"></audio>
+											</a>
 
-									<script>
-	 									$(function() {
-	 										$('.imagemodal').on('click', function() {
-	 											var post_id1 = document.getElementById("card_postid").value;
-	 											$('input#model_postid').attr('value', post_id1);
-	 											$('.imagepreview').attr('src', $(this).find('img').attr('src'));
-	 											$('.audiopreview').attr('src', $(this).find('audio').attr('src'));
-	 											$('#postmodal').modal('show');   
-	 										});		
-	 									});	 
-									</script>
+											<div class="modal fade" id="modal${posts.postId}"
+												tabindex="-1" role="dialog"
+												aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal-dialog modal-md">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="exampleModalLabel">
+															Image preview
+															</h5>
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															<img src="" id="imagepreview${posts.postId}"
+																class="imagepreview mx-auto modal-body"
+																style="max-height: 100%; max-width: 100%">
+															<audio src="" id="audiopreview${posts.postId}"
+																class="audiopreview" type="audio/webm" autoplay>
+															</audio>
+														</div>
 
-											</div>
-											<div class="card-footer">
-												<c:out value="${posts.imagecaption}"></c:out>
-												<form action="deleteuserpost">
-													<input type="type" name="userid" value="${user.myId}">
-													<input type="type" name="postid" value="${posts.postId}">
-													<button typr="submit" class="btn btn-danger btn-block">Delete post</button>
-													
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-							<!-- Model Div -->
-							<div class="modal fade" id="postmodal" tabindex="-1"
-								role="dialog" aria-labelledby="exampleModalLabel"
-								aria-hidden="true">
-								<div class="modal-dialog modal-md">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Image
-												preview</h5>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-													<img src="" class="imagepreview mx-auto modal-body" style="max-height:100%; max-width:100%">
-													<audio src="" class="audiopreview" type="audio/webm"
-														autoplay> </audio>
-																							
-										</div>
-									
-										<div class="modal-footer">
-												<div>
-													<div id="commentform">
-														<form class="mr-auto">
-														   <label class="mt-2">Leave a comment : </label> 
-														   <input name="post_id" value="" type="hidden" id="model_postid">
-														   <input name="inputcomment" type="text" id="inputcomment" size="30"> 
-														   <button type="button" onclick="commentclick()" class="bg-success mt-2 p-2">Comment</button>
-														</form>
+														<div class="modal-footer">
+															<div>
+																<div id="commentform">
+																	<form class="mr-auto">
+																		<label class="mt-2">Leave a comment : </label> 
+																		<input
+																			name="post_id" value="${posts.postId}" type="hidden"
+																			id="model_postid"> <input
+																			name="inputcomment${posts.postId}" type="text"
+																			id="inputcomment${posts.postId}" size="30" value="">
+																		<button type="button"
+																			onclick="commentclick(${posts.postId})"
+																			class="bg-success mt-2 p-2">Comment</button>
+																	</form>
+																</div>
+																<div class="list-comments mt-2"
+																	id="listcomments${posts.postId}"></div>
+															</div>
+														</div>
 													</div>
-													<div class="list-comments mt-2" id="list-comments"></div>
 												</div>
+											</div>
 										</div>
+
+
+
+										<script>
+									
+									function showmodal(postId)
+									{
+										var post_id1 = document.getElementById("card_postid").value;
+											$('#imagepreview'+postId).attr('src', $('#image'+postId).find('img').attr('src'));
+											$('#audiopreview'+postId).attr('src', $('#image'+postId).find('audio').attr('src'));
+											$('#modal'+postId).modal('show');  
+									
+									}
+	 								</script>
+
+									</div>
+									<div class="card-footer">
+										<c:out value="${posts.imagecaption}"></c:out>
 									</div>
 								</div>
 							</div>
-						</div>
-						<!-- Model div closes -->
+					
+					</c:forEach>
+					<!-- Model Div -->
+
 					</div>
-					<!-- closes row div -->
+
+					<!-- Model div closes -->
 				</div>
-				<!-- closes container div -->
+				<!-- closes row div -->
 			</div>
-			<!-- show posts div closes -->
+			<!-- closes container div -->
 		</div>
 	</div>
-	</div>
-	
-<!-- 	
 
-<script type="text/javascript">
-function commentclick()
+
+
+	<script type="text/javascript">
+function commentclick(postid)
 {
-	var $text = document.getElementById('inputcomment').value;
+	var $text = document.getElementById('inputcomment'+postid).value;//$('#inputcomment'+postid).value;
 	var	response;
-	var $postid = document.getElementById('model_postid').value;
-	alert('postid:'+$postid);
+//	var $postid = document.getElementById('model_postid').value;
+	//alert('postid:'+postid);
 	response = $text;	
-	alert("sd:"+$text);
+	//alert("sd:"+$('#inputcomment'+postid).value);
  	$.ajax({
 			url:"/saveComment",
 			type:"POST",
-			data:{"inputcomment": $text, "post_id": $postid},
+			data:{"inputcomment": $text, "post_id": postid},
 			
 			success:function(data){
 				
 //	         	$("#list-comments").append('<div>'+data['comment']+" "+	data['post']+"  "+data['user']+" "+data['date']+'</div>');
-	              
-
-	         	$("#list-comments").append('<div class="bg-light container mb-2 p-2">'+ 
+		//		alert("data:"+data['comment']+"  "+postid); 
+	           
+				$('#listcomments'+postid).append('<div class="bg-light container mb-2 p-2">'+ 
 	         									'<div class="row pl-4">	<b>' + data['user'] + '</b> </div>'+
 	         									'<div class="row pl-4">' + data['comment']+ 
 		         									'</div><div class="row text-muted small pl-4">'+ data['date']+
@@ -246,14 +251,12 @@ function commentclick()
 	         	
 		            
 				 
-				alert("data:"+data['comment']); 
-	         	document.getElementById('inputcomment').value = '';
-				alert('success');
+				$('#inputcomment'+postid).value="";
+//				alert('success');
 			}
 			});
   	return false;
 }
-
-</script> -->
+</script>
 </body>
 </html>
