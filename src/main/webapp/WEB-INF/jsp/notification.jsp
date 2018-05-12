@@ -106,7 +106,7 @@
 				
 				<div class="container p-3 m-2">
 				    <div class="row pl-5">
-				        <div class="col mx-auto bg-light p-2">
+				        <div class="col mx-auto bg-light p-2 border-top border-bottom">
 			           	  <c:forEach items="${user.notificationString}" var="heading">
 								<c:out value="${heading}"></c:out>
 						  </c:forEach>

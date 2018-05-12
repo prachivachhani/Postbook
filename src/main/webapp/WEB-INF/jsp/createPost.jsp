@@ -35,10 +35,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-record/2.1.2/videojs.record.min.js"></script>
  
  	<!-- IMAGE FILE LINKS -->
- 	<script src="https://vjs.zencdn.net/6.8.0/video.min.js"></script>
+<!--  	<script src="https://vjs.zencdn.net/6.8.0/video.min.js"></script>
  	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
  	<script src="https://collab-project.github.io/videojs-record/dist/videojs.record.min.js"></script>
- 
+ --> 
   <style>
   /* change player background color */
   #myAudio {
@@ -140,7 +140,7 @@
 						                <div class="form-group row">
 						                    <label class="form-label col-sm-4">Click to upload image:</label> 
 						                    <div class="form-field col-sm-8">
-						                    <video id="myImage" class="video-js vjs-default-skin"></video>
+<!-- 						                    <video id="myImage" class="video-js vjs-default-skin"></video>
 
 												<script>
 												var player = videojs("myImage", {
@@ -177,7 +177,9 @@
 												});
 												</script>
 						                    <input type="hidden" name="imagefile" id="imagefile" value=player.recordedData/>
-						                    </div>
+ -->										<input type="file" name="imagefile" id="imagefile" />
+ 										
+ 						                    </div>
 						                </div>
 						                <div class="form-group row">
 						                    <label class="form-label col-sm-4">Click to upload audio:</label> 
