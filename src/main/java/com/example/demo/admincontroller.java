@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +39,7 @@ public class admincontroller {
 		ModelAndView mv = new ModelAndView();
 
 		User user = userRepo.findByMyId(Long.parseLong(userid));
-		System.out.println("useriD::"+userid+"   d:"+user.getMyId());
+		System.out.println("useriD::" + userid + "d:" + user.getMyId());
 		
 		numberoffriends = friendRepo.countByMe(user);
 		
@@ -84,5 +83,4 @@ public class admincontroller {
 
 		return mv;
 	}
-
 }

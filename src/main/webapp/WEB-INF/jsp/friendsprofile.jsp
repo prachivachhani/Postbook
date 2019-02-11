@@ -5,35 +5,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
 <script type="text/javascript">
 	$(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
                 $(this).ekkoLightbox();
             });
-	</script>
+</script>
 
 <script>
   // This is called with the results from from FB.getLoginStatus().
@@ -361,39 +352,32 @@
 
 
 	<script type="text/javascript">
-function commentclick(postid)
-{
-	var $text = document.getElementById('inputcomment'+postid).value;//$('#inputcomment'+postid).value;
-	var	response;
-//	var $postid = document.getElementById('model_postid').value;
-	//alert('postid:'+postid);
-	response = $text;	
-	//alert("sd:"+$('#inputcomment'+postid).value);
- 	$.ajax({
-			url:"/saveComment",
-			type:"POST",
-			data:{"inputcomment": $text, "post_id": postid},
-			
-			success:function(data){
-				
-//	         	$("#list-comments").append('<div>'+data['comment']+" "+	data['post']+"  "+data['user']+" "+data['date']+'</div>');
-		//		alert("data:"+data['comment']+"  "+postid); 
-	           
-				$('#listcomments'+postid).append('<div class="bg-light container mb-2 p-2">'+ 
-	         									'<div class="row pl-4">	<b>' + data['user'] + '</b> </div>'+
-	         									'<div class="row pl-4">' + data['comment']+ 
-		         									'</div><div class="row text-muted small pl-4">'+ data['date']+
-		         									'</div>'+
-		         								'</div>');
-	         	
-		            
-				 
-				$('#inputcomment'+postid).value="";
-//				alert('success');
-			}
-			});
-  	return false;
-}
-</script>
+		function commentclick(postid)
+		{
+			var $text = document.getElementById('inputcomment'+postid).value;//$('#inputcomment'+postid).value;
+			var	response;
+			response = $text;	
+			$.ajax({
+					url:"/saveComment",
+					type:"POST",
+					data:{"inputcomment": $text, "post_id": postid},
+					
+					success:function(data){
+					   
+						$('#listcomments'+postid).append('<div class="bg-light container mb-2 p-2">'+ 
+														'<div class="row pl-4">	<b>' + data['user'] + '</b> </div>'+
+														'<div class="row pl-4">' + data['comment']+ 
+															'</div><div class="row text-muted small pl-4">'+ data['date']+
+															'</div>'+
+														'</div>');
+						
+							
+						 
+						$('#inputcomment'+postid).value="";
+					}
+					});
+			return false;
+		}
+	</script>
 </body>
 </html>

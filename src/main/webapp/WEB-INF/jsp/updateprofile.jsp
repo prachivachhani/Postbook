@@ -219,7 +219,6 @@
 									class="nav-link text-dark">Update Profile</a></li>
 								<li class="nav-item"><a href="login"
 									class="nav-link text-dark" onclick="FB.logout()">Logout</a></li>
-
 							</ul>
 						</div>
 					</div>
@@ -232,7 +231,7 @@
 				    <div class="row">
 				        <div class="col mx-auto">
 			                <div class="card border-secondary w-50 mx-auto">
-			                    <div class="card-header">
+									<div class="card-header">
 				                        <h3 class="my-2">Update Profile</h3>
 				                    </div>
 				                    <div class="card-body">
@@ -251,13 +250,10 @@
 					                        </div>
 					                    </form>
 					                </div>
-					           </div>
-					      </div>
-					   </div>
+					        </div>
+					    </div>
 					</div>
-				
-				
-				
+				</div>
 			</div>	
 		</div>
 	</div>

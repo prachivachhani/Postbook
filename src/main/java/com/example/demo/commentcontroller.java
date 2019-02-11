@@ -3,10 +3,8 @@ package com.example.demo;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +69,6 @@ public class commentcontroller {
 			List<Comments> c = commentRepo.findAllByPost(post);
 			System.out.println("Comment size"+c.size());
 			
-		//	JSONObject json=new JSONObject();
 			JSONObject commentObj=new JSONObject();
 			try {
 				commentObj.put("comment", comment.getComment());
@@ -79,18 +76,15 @@ public class commentcontroller {
 				commentObj.put("date", comment.getDate());
 				commentObj.put("user", comment.getUsername());
 				
-				//json.put("commentDetails", commentObj);
-				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 			response.getWriter().write(commentObj.toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+     	}
 		
-	   }
+	}
 }

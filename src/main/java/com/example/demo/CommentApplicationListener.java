@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommentApplicationListener implements ApplicationListener<CommentEvent>
 {
-//	public List<String> notification =new ArrayList<>();
 	@Autowired
 	UserRepository userRepo;
 	
@@ -22,7 +21,7 @@ public class CommentApplicationListener implements ApplicationListener<CommentEv
 	@Override
     public void onApplicationEvent(CommentEvent event) {
 		
-		System.out.println("################ in notification listner #####################");
+		//System.out.println("################ in notification listner #####################");
 		String userid = event.getNotification();
 		User user = userRepo.findByMyId(Long.parseLong(userid));
 		
@@ -36,7 +35,6 @@ public class CommentApplicationListener implements ApplicationListener<CommentEv
 				userfriend = userRepo.findByMyId(friends.get(i).getFriendId());
 				userfriend.addNotificationString(user.getName() + " added a comment on your post");
 				System.out.println("Data for " + userfriend.getName() + " : " + user.getName() + " added a comment on your post");
-
 			}
 		}
 		System.out.println("Received spring custom event - " + event.getNotification());

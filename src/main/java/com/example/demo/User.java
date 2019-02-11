@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -41,14 +40,6 @@ public class User {
 
 	public ArrayList<String> notificationString = new ArrayList<>();
  	
-//	@Column(columnDefinition="mediumblob")
- //   private byte[] profileImage;
-	
-
-//	@OneToMany(mappedBy="me")
-//	private List<Friends> friends;
-//	private List<Post> posts;
-
 	public ArrayList<String> getNotificationString() {
 		return notificationString;
 	}

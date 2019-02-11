@@ -65,7 +65,7 @@ public class logincontroller
 		req.getSession().setAttribute("user_id", Long.parseLong(myId));
 		Long id = (Long) req.getSession().getAttribute("user_id");
 		User testuser = userRepo.findByMyId(id);
-		System.out.println("################ in login controller ###################");
+		//System.out.println("################ in login controller ###################");
 		
 		System.out.println(myId + myName + myEmail + myFriends);
 		String[] splitted = myFriends.split("/");
@@ -91,7 +91,6 @@ public class logincontroller
 
 				userRepo.save(u);
 			}
-//			return new ModelAndView ("redirect:/myprofile");
 			return new ModelAndView ("redirect:/createprofile");
 		}
 		else {
@@ -159,7 +158,7 @@ public class logincontroller
 		User user = userRepo.findByMyId(id);
 		
 		System.out.println(user.getProfilepicURI());
-		System.out.println("########################### in myprofile getmapping ###############");
+		//System.out.println("########################### in myprofile getmapping ###############");
 
 		numberoffriends = friendRepo.countByMe(user);
 		System.out.println("my friends count : " + numberoffriends);
@@ -197,7 +196,7 @@ public class logincontroller
 		User user = userRepo.findByMyId(id);
 		
 		System.out.println(user.getProfilepicURI());
-		System.out.println("########################### in myprofile getmapping ###############");
+		//System.out.println("########################### in myprofile getmapping ###############");
 
 		numberoffriends = friendRepo.countByMe(user);
 		System.out.println("my friends count : " + numberoffriends);

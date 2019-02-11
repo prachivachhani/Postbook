@@ -2,7 +2,6 @@ package com.example.demo;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -44,26 +43,4 @@ public class Friends implements Serializable
 	public void setFriendId(Long friendId) {
 		this.friendId = friendId;
 	}
-	
-	
-/*
-	@EmbeddedId
-	private Key key = new Key();
-
-	@ManyToOne
-	@MapsId("meId")
-	private User me;
-
-	@ManyToOne
-	@MapsId("friendId")
-	private User friend;
-
-    @Embeddable
-    public static class Key implements Serializable 
-    {
-	      private Long meId;
-	      private Long friendId;
-    }	
-
-*/
 }

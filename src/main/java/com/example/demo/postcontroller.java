@@ -46,7 +46,7 @@ public class postcontroller {
 		User user = userRepo.findByMyId(id);
 		
 		System.out.println(user.getProfilepicURI());
-		System.out.println("########################### in postcontroller getmapping createPost ###############");
+		//System.out.println("########################### in postcontroller getmapping createPost ###############");
 		
 		numberoffriends = friendRepo.countByMe(user);
 		System.out.println("my friends count : " + numberoffriends);
@@ -74,7 +74,7 @@ public class postcontroller {
 		Long id = (Long) req.getSession().getAttribute("user_id");
 		User user = userRepo.findByMyId(id);
 		
-		System.out.println("############################# in post controller ######################");
+		//System.out.println("############################# in post controller ######################");
 		System.out.println("USER_ID " + id);
 		System.out.println("USER_NAME " + user.getName());
 
@@ -86,11 +86,9 @@ public class postcontroller {
 
 		PostEvent postEvent = new PostEvent(this, id.toString());
 		applicationEventPublisher.publishEvent(postEvent);
-		
-		
+				
 		Long postId = post.getPostId();
 		System.out.println("IN POST CONTROLLER : POST_ID " + postId);
-
 
 		post.setAudioURI(postId.toString() + "audio");
 		post.setImageURI(postId.toString() + "image");

@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +25,7 @@ public class friendsprofilecontroller
 	@GetMapping(value="/friendsprofile")
 	public ModelAndView visitfriendsprofile(HttpServletRequest req,  @RequestParam("friendsid") String friendsid)
 	{	
-		System.out.println("##########in friends profile controller ###############");
+		//System.out.println("##########in friends profile controller ###############");
 		Long userid = (Long) req.getSession().getAttribute("user_id");
 		User user = userRepo.findByMyId(userid);
 		User friend = userRepo.findByMyId(Long.parseLong(friendsid));

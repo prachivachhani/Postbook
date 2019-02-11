@@ -29,7 +29,6 @@
 		<div class="row">
 			<div class="col-md-6 text-dark mt-3">
 				Start by creating your profile page... 
-			
 			</div>
 		</div>
 	</div>

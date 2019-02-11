@@ -6,7 +6,6 @@ public class Response {
 	private Object data;
 	
 	public Response(){
-		
 	}
 	
 	public Response(String status, Object data){

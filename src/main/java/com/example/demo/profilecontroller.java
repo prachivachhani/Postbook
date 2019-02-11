@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +58,7 @@ public class profilecontroller
 		String fileURI = s3object.upload(user.getProfilepicURI(), image.getInputStream());
 		
 		user.setProfilepicURI(fileURI);
-		System.out.println("########################### in myprofile getmapping ###############");
+		//System.out.println("########################### in myprofile getmapping ###############");
 
 		numberoffriends = friendRepo.countByMe(user);
 		System.out.println("my friends count : " + numberoffriends);
@@ -92,7 +91,7 @@ public class profilecontroller
 		String fileURI = s3object.upload(user.getProfilepicURI(), image.getInputStream());
 		
 		user.setProfilepicURI(fileURI);
-		System.out.println("########################### in myprofile getmapping ###############");
+		//System.out.println("########################### in myprofile getmapping ###############");
 
 		numberoffriends = friendRepo.countByMe(user);
 		System.out.println("my friends count : " + numberoffriends);
@@ -106,7 +105,6 @@ public class profilecontroller
 		profilePage.addObject("user", user);
 		profilePage.setViewName("redirect:/myprofile");
 		return profilePage;
-
 	}
 
 }
